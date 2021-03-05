@@ -14,7 +14,8 @@ export default forwardRef(
     }
     const {title,changeTitle} = props
     return (
-      <div>{title}
+      <div>
+        <p>{title}</p>
       <button onClick={changeTitle}>changeTitle</button>
       </div>
     )

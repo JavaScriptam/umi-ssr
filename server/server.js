@@ -6,7 +6,7 @@ const mount = require('koa-mount');
 const render = require('../dist/umi.server');
 const { join, extname } = require('path');
 const { parseCookie, parseNavLang } = require('./serverHelper');
-const {isApi,redirectRouter}  = require('./middleware/checkToken')
+const {isApi,redirectRouter}  = require('./middleware')
 const isDev = process.env.NODE_ENV === 'development';
 const root = join(__dirname, 'dist');
 const app = new Koa();
@@ -32,6 +32,7 @@ app.use(isApi)
 app.use(redirectRouter)
 
 app.use(async (ctx, next) => {
+  console.log(ctx)
   /**
    *  扩展global对象
    *
@@ -65,11 +66,12 @@ app.use(async (ctx, next) => {
       if (isDev) {
         delete require.cache[require.resolve('../dist/umi.server')];
       }
+
       ctx.body = html;
     } else {
       await next();
     }
-});
+}); 
 
 /**
  *  注意这里的静态目录设置，需要和umi打包出来的目录是同一个
@@ -78,7 +80,7 @@ app.use(async (ctx, next) => {
  */
 app.use(mount('/dist', require('koa-static')(root)));
 
-app.listen(7001);
-console.log('http://localhost:7001');
+app.listen(7000);
+console.log('http://localhost:7000');
 
 module.exports = app.callback();

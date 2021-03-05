@@ -13,7 +13,7 @@ export default  [
           {
             
             path:"/backend/role",
-            component: '@/views/role/index.tsx'
+            component: '@/views/role/index.tsx',
           },
           {
             path:"/backend/manage",
@@ -22,7 +22,7 @@ export default  [
         ]
       },
       {
-          path:"login",
+          path:"/login",
           component: '@/views/login/index.tsx'
       }
     ]

@@ -3,7 +3,7 @@ import axios from 'axios'
 const instance = axios.create({withCredentials: true})
 //自定义请求头 方便node识别 为api 还是普通url 链接,
 instance.defaults.headers['sign-api'] = NODE_AXIOS_API_URL
-
+instance.defaults.withCredentials=true;
 instance.interceptors.request.use((config)=>{
   //如果是服务端渲染，则直接修改请求地址到api真实地址，不走代理，不用考虑跨域问题 服务端请求api 不存在跨域
   if(config.isServer){

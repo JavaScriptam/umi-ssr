@@ -1,4 +1,4 @@
-import { connect, IGetInitialProps,useStore } from 'umi';
+import { connect, IGetInitialProps,useStore,history } from 'umi';
 import React ,{useState} from 'react';
 import {getList} from '@/api/list'
 import Test1 from './comp'
@@ -17,7 +17,6 @@ const Role = ()=>  {
     <div style={{ padding: 20 }} >
       {test.items.map((item:any)=> item.name)}
       <button onClick={getData}>获取数据</button>
-      <p>{test.title}</p>
       <div>
         子组件：
         <Test1 title={title} changeTitle={changeTitle}/>
